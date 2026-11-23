@@ -6,10 +6,10 @@ package grafitall;
  * Representa UM cliente atacadista da fábrica.
  * Cada objeto vira um registro dentro de WebContent/dados/clientes.json.
  */
-public class Cliente {
+public class Cliente extends Cadastro {
 
     // ---------- ATRIBUTOS ----------
-    private int id;              // número único, criado pelo sistema
+    // O id NÃO está aqui: ele é herdado da classe Cadastro.
     private String razaoSocial;  // nome oficial da empresa cliente
     private String cnpj;         // texto, para guardar pontos, barra e traço
     private String telefone;     // texto, para guardar parênteses e traço
@@ -23,7 +23,7 @@ public class Cliente {
 
     // Com argumentos: inicia todos os atributos de uma vez.
     public Cliente(int id, String razaoSocial, String cnpj, String telefone, String cidadeUf) {
-        this.id = id;
+        super(id);   // chama o construtor de Cadastro (precisa ser a 1ª linha)
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
         this.telefone = telefone;
@@ -31,14 +31,6 @@ public class Cliente {
     }
 
     // ---------- GET e SET ----------
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getRazaoSocial() {
         return razaoSocial;
@@ -70,6 +62,12 @@ public class Cliente {
 
     public void setCidadeUf(String cidadeUf) {
         this.cidadeUf = cidadeUf;
+    }
+
+    // Implementa o método abstrato de Cadastro (é obrigatório).
+    @Override
+    public String getDescricao() {
+        return razaoSocial;
     }
 
     @Override

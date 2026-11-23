@@ -18,7 +18,8 @@
         materia = dao.buscarPorId(Integer.parseInt(idTexto));
     }
 
-    String titulo = (materia.getId() == 0) ? "Nova matéria-prima" : "Editar matéria-prima";
+    String titulo = (materia.getId() == 0) ? "Nova matéria-prima" : "Editar matéria-prima: " + materia.getDescricao();
+    // getDescricao() vem da superclasse Cadastro (cada subclasse escreve a sua).
 %>
 <%@ include file="cabecalho.jsp" %>
 

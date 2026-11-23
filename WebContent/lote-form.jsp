@@ -21,7 +21,8 @@
         lote = dao.buscarPorId(Integer.parseInt(idTexto));
     }
 
-    String titulo = (lote.getId() == 0) ? "Novo lote" : "Editar lote";
+    String titulo = (lote.getId() == 0) ? "Novo lote" : "Editar lote: " + lote.getDescricao();
+    // getDescricao() vem da superclasse Cadastro (cada subclasse escreve a sua).
 %>
 <%@ include file="cabecalho.jsp" %>
 

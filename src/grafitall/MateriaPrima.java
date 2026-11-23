@@ -12,10 +12,10 @@ package grafitall;
  *  - atributos com letra minúscula e qualificador private (encapsulamento);
  *  - acesso aos atributos somente pelos métodos get e set.
  */
-public class MateriaPrima {
+public class MateriaPrima extends Cadastro {
 
     // ---------- ATRIBUTOS (private = só a própria classe enxerga) ----------
-    private int id;                       // número único, criado pelo sistema
+    // O id NÃO está aqui: ele é herdado da classe Cadastro.
     private String nome;                  // ex.: "Argila"
     private Double quantidadeEstoqueKg;   // quantos kg há no estoque
     private String fornecedor;            // quem vende essa matéria-prima
@@ -31,7 +31,7 @@ public class MateriaPrima {
     // Construtor com argumentos: inicia os atributos com os valores recebidos.
     public MateriaPrima(int id, String nome, Double quantidadeEstoqueKg,
                         String fornecedor, Double precoPorKg) {
-        this.id = id;
+        super(id);   // chama o construtor de Cadastro (precisa ser a 1ª linha)
         this.nome = nome;
         this.quantidadeEstoqueKg = quantidadeEstoqueKg;
         this.fornecedor = fornecedor;
@@ -39,14 +39,6 @@ public class MateriaPrima {
     }
 
     // ---------- MÉTODOS DE ACESSO (GET e SET) ----------
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -78,6 +70,12 @@ public class MateriaPrima {
 
     public void setPrecoPorKg(Double precoPorKg) {
         this.precoPorKg = precoPorKg;
+    }
+
+    // Implementa o método abstrato de Cadastro (é obrigatório).
+    @Override
+    public String getDescricao() {
+        return nome;
     }
 
     // ---------- SOBRESCRITA DO toString (vem da classe Object) ----------

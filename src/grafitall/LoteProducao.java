@@ -6,10 +6,10 @@ package grafitall;
  * Representa UM lote de minas de grafite que a fábrica produziu.
  * Cada objeto vira um registro dentro de WebContent/dados/lotes-producao.json.
  */
-public class LoteProducao {
+public class LoteProducao extends Cadastro {
 
     // ---------- ATRIBUTOS ----------
-    private int id;                              // número único, criado pelo sistema
+    // O id NÃO está aqui: ele é herdado da classe Cadastro.
     private String graduacao;                    // dureza da mina: de "12H" até "12B"
     private Integer quantidadeProduzidaUnidades; // quantas minas o lote tem
     private String dataFabricacao;               // guardada como texto: "01/10/2026"
@@ -37,7 +37,7 @@ public class LoteProducao {
     // Com argumentos: inicia todos os atributos de uma vez.
     public LoteProducao(int id, String graduacao, Integer quantidadeProduzidaUnidades,
                         String dataFabricacao, String status) {
-        this.id = id;
+        super(id);   // chama o construtor de Cadastro (precisa ser a 1ª linha)
         this.graduacao = graduacao;
         this.quantidadeProduzidaUnidades = quantidadeProduzidaUnidades;
         this.dataFabricacao = dataFabricacao;
@@ -45,14 +45,6 @@ public class LoteProducao {
     }
 
     // ---------- GET e SET ----------
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getGraduacao() {
         return graduacao;
@@ -84,6 +76,12 @@ public class LoteProducao {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    // Implementa o método abstrato de Cadastro (é obrigatório).
+    @Override
+    public String getDescricao() {
+        return "Lote " + graduacao + " de " + dataFabricacao;
     }
 
     @Override

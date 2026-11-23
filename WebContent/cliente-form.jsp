@@ -22,7 +22,8 @@
     }
 
     // O título muda conforme o caso.
-    String titulo = (cliente.getId() == 0) ? "Novo cliente" : "Editar cliente";
+    String titulo = (cliente.getId() == 0) ? "Novo cliente" : "Editar cliente: " + cliente.getDescricao();
+    // getDescricao() vem da superclasse Cadastro (cada subclasse escreve a sua).
 %>
 <%@ include file="cabecalho.jsp" %>
 

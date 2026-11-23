@@ -16,6 +16,10 @@ matérias-primas, os lotes produzidos e os clientes atacadistas.
 
 Cada cadastro tem as operações **incluir, alterar, excluir e listar**.
 
+**Herança:** as três classes herdam da classe abstrata `Cadastro`, que guarda o que é comum
+a todas: o `id` (`protected`), `getId()`/`setId()` e o método abstrato `getDescricao()`,
+que cada subclasse implementa do seu jeito.
+
 ## Tecnologias
 
 - **JSP** (Java Server Pages)
@@ -37,6 +41,7 @@ Os diagramas estão em PlantUML. Para ver a imagem, cole o conteúdo do `.puml` 
 ```
 Grafitall/
 ├── src/grafitall/          classes Java
+│   ├── Cadastro.java           superclasse abstrata (id comum aos três)
 │   ├── MateriaPrima.java       modelo (atributos, get/set)
 │   ├── LoteProducao.java       modelo
 │   ├── Cliente.java            modelo

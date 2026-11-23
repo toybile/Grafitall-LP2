@@ -1,6 +1,7 @@
 @startuml diagrama-classes
 ' Diagrama de classes do Grafitall (fonte em PlantUML).
-' Notação: "-" = private, "+" = public, sublinhado = static.
+' Notação: "-" = private, "+" = public, "#" = protected, sublinhado = static,
+' itálico = abstrato. Seta com triângulo vazado (<|--) = herança (extends).
 ' Seta tracejada com ponta aberta (..>) = "usa" (dependência).
 
 title Grafitall - Diagrama de Classes
@@ -9,8 +10,16 @@ hide empty members
 
 package grafitall {
 
+  abstract class Cadastro {
+    # id: int
+    + Cadastro()
+    + Cadastro(id: int)
+    + getId(): int
+    + setId(id: int): void
+    + {abstract} getDescricao(): String
+  }
+
   class MateriaPrima {
-    - id: int
     - nome: String
     - quantidadeEstoqueKg: Double
     - fornecedor: String
@@ -18,11 +27,11 @@ package grafitall {
     + MateriaPrima()
     + MateriaPrima(id: int, nome: String, quantidadeEstoqueKg: Double, fornecedor: String, precoPorKg: Double)
     + getters e setters()
+    + getDescricao(): String
     + toString(): String
   }
 
   class LoteProducao {
-    - id: int
     - graduacao: String
     - quantidadeProduzidaUnidades: Integer
     - dataFabricacao: String
@@ -32,11 +41,11 @@ package grafitall {
     + LoteProducao()
     + LoteProducao(id: int, graduacao: String, quantidadeProduzidaUnidades: Integer, dataFabricacao: String, status: String)
     + getters e setters()
+    + getDescricao(): String
     + toString(): String
   }
 
   class Cliente {
-    - id: int
     - razaoSocial: String
     - cnpj: String
     - telefone: String
@@ -44,6 +53,7 @@ package grafitall {
     + Cliente()
     + Cliente(id: int, razaoSocial: String, cnpj: String, telefone: String, cidadeUf: String)
     + getters e setters()
+    + getDescricao(): String
     + toString(): String
   }
 
@@ -86,6 +96,10 @@ package grafitall {
     + {static} gravar(caminho: String, lista: ArrayList<T>): void
   }
 }
+
+Cadastro <|-- MateriaPrima
+Cadastro <|-- LoteProducao
+Cadastro <|-- Cliente
 
 MateriaPrimaDAO ..> MateriaPrima : usa
 LoteProducaoDAO ..> LoteProducao : usa
