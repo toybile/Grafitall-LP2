@@ -22,3 +22,13 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Arquivos do Eclipse (cada um gera os seus ao importar o projeto)
+.classpath
+.project
+.settings/
+build/
+bin/
+
+# A biblioteca Gson PRECISA ir para o repositório (exigência do projeto)
+!WebContent/WEB-INF/lib/*.jar
