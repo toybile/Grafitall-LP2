@@ -33,8 +33,11 @@ que cada subclasse implementa do seu jeito.
 - Casos de uso: [`casos-de-uso/diagrama-casos-de-uso.puml`](casos-de-uso/diagrama-casos-de-uso.puml)
   e a descrição em [`casos-de-uso/casos-de-uso.md`](casos-de-uso/casos-de-uso.md)
 
-Os diagramas estão em PlantUML. Para ver a imagem, cole o conteúdo do `.puml` em
-[plantuml.com](https://www.plantuml.com/plantuml) ou use a extensão PlantUML do Eclipse ou do VS Code.
+Os diagramas foram escritos em PlantUML (`.puml`); os `.png` são as imagens geradas a partir deles.
+
+![Diagrama de classes](uml/diagrama-classes.png)
+
+![Diagrama de casos de uso](casos-de-uso/diagrama-casos-de-uso.png)
 
 ## Organização das pastas
 
@@ -61,7 +64,7 @@ Grafitall/
 │       cliente-form.jsp        formulário único (incluir e alterar)
 │       cliente-salvar.jsp      grava e volta para a lista
 │       cliente-excluir.jsp     exclui e volta para a lista
-├── uml/                    diagrama de classes
+├── uml/                    diagrama de classes (.puml e .png)
 ├── casos-de-uso/           diagrama e descrição dos casos de uso
 ├── prints/                 telas do sistema funcionando
 └── apresentacao/           slides da apresentação

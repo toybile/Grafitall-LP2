@@ -1,5 +1,46 @@
 @startuml diagrama-casos-de-uso
 ' Diagrama de casos de uso do Grafitall (fonte em PlantUML).
+' Um ator (o responsavel pela producao e pelo estoque) e 12 casos de uso:
+' incluir, alterar, excluir e listar em cada um dos 3 cadastros.
+
+!theme plain
+skinparam dpi 130
+skinparam defaultFontName Arial
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #555555
+skinparam ArrowThickness 1.2
+skinparam TitleFontSize 20
+skinparam TitleFontStyle bold
+skinparam nodesep 14
+skinparam ranksep 90
+skinparam actor {
+  BorderColor #3A3A3A
+  BackgroundColor #FFF3C4
+  FontStyle bold
+}
+skinparam rectangle {
+  BorderColor #9AA5B1
+  FontColor #3A3A3A
+  FontStyle bold
+  RoundCorner 16
+}
+skinparam usecase {
+  BorderThickness 1.2
+}
+skinparam usecase<<Materia>> {
+  BackgroundColor #EAF6EF
+  BorderColor #2F7A4F
+}
+skinparam usecase<<Lote>> {
+  BackgroundColor #EEF0FB
+  BorderColor #4C51A8
+}
+skinparam usecase<<Cliente>> {
+  BackgroundColor #FFF8E7
+  BorderColor #B7791F
+}
+hide stereotype
 
 title Grafitall - Diagrama de Casos de Uso
 left to right direction
@@ -7,20 +48,24 @@ left to right direction
 actor "Responsável pela\nprodução e estoque" as Usuario
 
 rectangle "Sistema Grafitall" {
-  usecase "Listar matérias-primas" as UC01
-  usecase "Incluir matéria-prima" as UC02
-  usecase "Alterar matéria-prima" as UC03
-  usecase "Excluir matéria-prima" as UC04
-
-  usecase "Listar lotes de produção" as UC05
-  usecase "Incluir lote de produção" as UC06
-  usecase "Alterar lote de produção" as UC07
-  usecase "Excluir lote de produção" as UC08
-
-  usecase "Listar clientes" as UC09
-  usecase "Incluir cliente" as UC10
-  usecase "Alterar cliente" as UC11
-  usecase "Excluir cliente" as UC12
+  rectangle "Matérias-primas" {
+    usecase "Listar matérias-primas" as UC01 <<Materia>>
+    usecase "Incluir matéria-prima" as UC02 <<Materia>>
+    usecase "Alterar matéria-prima" as UC03 <<Materia>>
+    usecase "Excluir matéria-prima" as UC04 <<Materia>>
+  }
+  rectangle "Lotes de produção" {
+    usecase "Listar lotes de produção" as UC05 <<Lote>>
+    usecase "Incluir lote de produção" as UC06 <<Lote>>
+    usecase "Alterar lote de produção" as UC07 <<Lote>>
+    usecase "Excluir lote de produção" as UC08 <<Lote>>
+  }
+  rectangle "Clientes" {
+    usecase "Listar clientes" as UC09 <<Cliente>>
+    usecase "Incluir cliente" as UC10 <<Cliente>>
+    usecase "Alterar cliente" as UC11 <<Cliente>>
+    usecase "Excluir cliente" as UC12 <<Cliente>>
+  }
 }
 
 Usuario --> UC01
