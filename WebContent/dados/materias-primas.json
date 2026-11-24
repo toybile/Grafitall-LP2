@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "nome": "Grafite em pó natural",
+    "quantidade_estoque_kg": 250.0,
+    "fornecedor": "Mineração Serra Azul",
+    "preco_por_kg": 18.5
+  }
+]

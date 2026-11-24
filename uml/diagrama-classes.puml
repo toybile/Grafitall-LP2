@@ -1,0 +1,117 @@
+@startuml diagrama-classes
+' Diagrama de classes do Grafitall (fonte em PlantUML).
+' Notação: "-" = private, "+" = public, "#" = protected, sublinhado = static,
+' itálico = abstrato. Seta com triângulo vazado (<|--) = herança (extends).
+' Seta tracejada com ponta aberta (..>) = "usa" (dependência).
+
+title Grafitall - Diagrama de Classes
+skinparam classAttributeIconSize 0
+hide empty members
+
+package grafitall {
+
+  abstract class Cadastro {
+    # id: int
+    + Cadastro()
+    + Cadastro(id: int)
+    + getId(): int
+    + setId(id: int): void
+    + {abstract} getDescricao(): String
+  }
+
+  class MateriaPrima {
+    - nome: String
+    - quantidadeEstoqueKg: Double
+    - fornecedor: String
+    - precoPorKg: Double
+    + MateriaPrima()
+    + MateriaPrima(id: int, nome: String, quantidadeEstoqueKg: Double, fornecedor: String, precoPorKg: Double)
+    + getters e setters()
+    + getDescricao(): String
+    + toString(): String
+  }
+
+  class LoteProducao {
+    - graduacao: String
+    - quantidadeProduzidaUnidades: Integer
+    - dataFabricacao: String
+    - status: String
+    + {static} GRADUACOES: String[]
+    + {static} STATUS: String[]
+    + LoteProducao()
+    + LoteProducao(id: int, graduacao: String, quantidadeProduzidaUnidades: Integer, dataFabricacao: String, status: String)
+    + getters e setters()
+    + getDescricao(): String
+    + toString(): String
+  }
+
+  class Cliente {
+    - razaoSocial: String
+    - cnpj: String
+    - telefone: String
+    - cidadeUf: String
+    + Cliente()
+    + Cliente(id: int, razaoSocial: String, cnpj: String, telefone: String, cidadeUf: String)
+    + getters e setters()
+    + getDescricao(): String
+    + toString(): String
+  }
+
+  class MateriaPrimaDAO {
+    - caminho: String
+    - tipoLista: Type
+    + MateriaPrimaDAO(caminho: String)
+    + listar(): ArrayList<MateriaPrima>
+    + buscarPorId(id: int): MateriaPrima
+    + incluir(novo: MateriaPrima): void
+    + alterar(alterado: MateriaPrima): void
+    + excluir(id: int): void
+  }
+
+  class LoteProducaoDAO {
+    - caminho: String
+    - tipoLista: Type
+    + LoteProducaoDAO(caminho: String)
+    + listar(): ArrayList<LoteProducao>
+    + buscarPorId(id: int): LoteProducao
+    + incluir(novo: LoteProducao): void
+    + alterar(alterado: LoteProducao): void
+    + excluir(id: int): void
+  }
+
+  class ClienteDAO {
+    - caminho: String
+    - tipoLista: Type
+    + ClienteDAO(caminho: String)
+    + listar(): ArrayList<Cliente>
+    + buscarPorId(id: int): Cliente
+    + incluir(novo: Cliente): void
+    + alterar(alterado: Cliente): void
+    + excluir(id: int): void
+  }
+
+  class ArquivoJson {
+    - {static} gson: Gson
+    + {static} ler(caminho: String, tipo: Type): ArrayList<T>
+    + {static} gravar(caminho: String, lista: ArrayList<T>): void
+  }
+}
+
+Cadastro <|-- MateriaPrima
+Cadastro <|-- LoteProducao
+Cadastro <|-- Cliente
+
+MateriaPrimaDAO ..> MateriaPrima : usa
+LoteProducaoDAO ..> LoteProducao : usa
+ClienteDAO ..> Cliente : usa
+
+MateriaPrimaDAO ..> ArquivoJson : lê e grava com
+LoteProducaoDAO ..> ArquivoJson : lê e grava com
+ClienteDAO ..> ArquivoJson : lê e grava com
+
+note bottom of ArquivoJson
+  Única classe que mexe nos arquivos .json,
+  usando a biblioteca Gson (toJson / fromJson).
+end note
+
+@enduml

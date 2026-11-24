@@ -1,0 +1,262 @@
+/* =========================================================
+   ESTILO DA GRAFITALL
+   Cores em tons de grafite (cinza-escuro) com um destaque amarelo,
+   lembrando um lápis. Tudo em CSS simples, sem bibliotecas.
+   ========================================================= */
+
+/* Cores usadas no site inteiro (variáveis do CSS) */
+:root {
+    --grafite: #2f3237;
+    --grafite-claro: #4a4e55;
+    --amarelo: #f2c230;
+    --fundo: #f4f4f2;
+    --branco: #ffffff;
+    --borda: #d9d9d4;
+    --vermelho: #c0392b;
+    --verde: #2e7d4f;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--fundo);
+    color: var(--grafite);
+}
+
+/* ---------- Cabeçalho e menu ---------- */
+.topo {
+    background: var(--grafite);
+    color: var(--branco);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-bottom: 5px solid var(--amarelo);
+}
+
+.marca {
+    color: var(--amarelo);
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.subtitulo {
+    color: #c9cbcf;
+    font-size: 14px;
+}
+
+.menu {
+    margin-left: auto;   /* empurra o menu para a direita */
+    display: flex;
+    gap: 6px;
+}
+
+.menu a {
+    color: var(--branco);
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.menu a:hover {
+    background: var(--grafite-claro);
+}
+
+/* ---------- Área do conteúdo ---------- */
+.conteudo {
+    max-width: 1000px;
+    margin: 32px auto;
+    padding: 0 16px;
+    min-height: 60vh;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+/* ---------- Cartões da página inicial ---------- */
+.cartoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.cartao {
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-left: 6px solid var(--amarelo);
+    border-radius: 6px;
+    padding: 20px;
+    color: var(--grafite);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cartao:hover {
+    border-left-color: var(--grafite);
+}
+
+.cartao strong {
+    font-size: 18px;
+}
+
+/* ---------- Título da listagem com o botão "Novo" ---------- */
+.barra-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.barra-titulo h1 {
+    margin: 0;
+}
+
+/* ---------- Botões ---------- */
+.botao {
+    display: inline-block;
+    background: var(--grafite);
+    color: var(--branco);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.botao:hover {
+    background: var(--grafite-claro);
+}
+
+.botao.secundario {
+    background: var(--branco);
+    color: var(--grafite);
+    border: 1px solid var(--borda);
+}
+
+/* ---------- Tabelas ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--branco);
+    border: 1px solid var(--borda);
+}
+
+th {
+    background: var(--grafite);
+    color: var(--branco);
+    text-align: left;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    border-top: 1px solid var(--borda);
+}
+
+tr:nth-child(even) td {
+    background: #fafaf8;   /* linhas alternadas, para facilitar a leitura */
+}
+
+.acoes a {
+    margin-right: 10px;
+    color: var(--grafite);
+    font-weight: bold;
+}
+
+.acoes a.excluir {
+    color: var(--vermelho);
+}
+
+.vazio {
+    color: #777;
+    font-style: italic;
+}
+
+/* Cores do status do lote */
+.status-ok {
+    color: var(--verde);
+    font-weight: bold;
+}
+
+.status-andamento {
+    color: #b7791f;
+    font-weight: bold;
+}
+
+/* ---------- Formulários ---------- */
+.formulario {
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-radius: 6px;
+    padding: 24px;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.formulario label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-weight: bold;
+}
+
+.formulario input,
+.formulario select {
+    padding: 9px;
+    font-size: 15px;
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    font-weight: normal;
+}
+
+.formulario input:focus,
+.formulario select:focus {
+    outline: 2px solid var(--amarelo);
+}
+
+.botoes {
+    display: flex;
+    gap: 10px;
+}
+
+/* ---------- Página de erro ---------- */
+.aviso-erro {
+    background: var(--branco);
+    border: 1px solid var(--borda);
+    border-left: 6px solid var(--vermelho);
+    border-radius: 6px;
+    padding: 24px;
+}
+
+.detalhe {
+    color: #777;
+    font-size: 13px;
+}
+
+/* ---------- Rodapé ---------- */
+.rodape {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    font-size: 13px;
+    border-top: 1px solid var(--borda);
+}
+
+/* ---------- Celular: menu embaixo da marca ---------- */
+@media (max-width: 700px) {
+    .menu {
+        margin-left: 0;
+        flex-wrap: wrap;
+    }
+    table {
+        font-size: 13px;
+    }
+}
