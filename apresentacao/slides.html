@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Grafitall - Apresentação</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  :root {
+    --grafite: #2f3237; --grafite-claro: #4a4e55; --amarelo: #f2c230;
+    --fundo: #f4f4f2; --borda: #d9d9d4; --verde: #2e7d4f; --texto: #2f3237;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; color: var(--texto); background: #fff; }
+  .slide {
+    width: 1280px; height: 720px; position: relative; overflow: hidden;
+    page-break-after: always; break-after: page; background: var(--fundo);
+    padding: 56px 72px 48px;
+  }
+  .slide:last-child { page-break-after: auto; break-after: auto; }
+  .slide::before {
+    content: ""; position: absolute; left: 0; top: 0; right: 0; height: 10px; background: var(--grafite);
+  }
+  .slide::after {
+    content: ""; position: absolute; left: 0; top: 10px; right: 0; height: 5px; background: var(--amarelo);
+  }
+  .rodape {
+    position: absolute; left: 72px; right: 72px; bottom: 22px; font-size: 15px; color: #888;
+    display: flex; justify-content: space-between;
+  }
+  h1 { font-size: 46px; margin: 0 0 8px; }
+  h2 { font-size: 38px; margin: 6px 0 28px; }
+  h2 .marca { display: inline-block; width: 14px; height: 34px; background: var(--amarelo); margin-right: 14px; vertical-align: -4px; }
+  p, li { font-size: 25px; line-height: 1.45; }
+  ul { margin: 0; padding-left: 30px; }
+  li { margin-bottom: 12px; }
+  li::marker { color: var(--amarelo); }
+  code, .code { font-family: Consolas, "Courier New", monospace; }
+  code { background: #e7e7e3; padding: 1px 6px; border-radius: 4px; font-size: 0.92em; }
+  b { color: var(--grafite); }
+
+  /* capa */
+  .capa { background: var(--grafite); color: #fff; display: flex; flex-direction: column; justify-content: center; padding-left: 110px; }
+  .capa::before, .capa::after { display: none; }
+  .capa .faixa { position: absolute; left: 0; top: 0; bottom: 0; width: 26px; background: var(--amarelo); }
+  .capa .logo { font-size: 92px; font-weight: bold; letter-spacing: 2px; margin: 0; }
+  .capa .logo span { color: var(--amarelo); }
+  .capa .sub { font-size: 30px; color: #d6d6d0; margin: 10px 0 60px; }
+  .capa .info { font-size: 22px; color: #bdbdb6; line-height: 1.6; }
+  .capa .info b { color: #fff; }
+
+  /* grades */
+  .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .tres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .cartao { background: #fff; border: 1px solid var(--borda); border-radius: 12px; padding: 22px 24px; }
+  .cartao h3 { margin: 0 0 6px; font-size: 26px; }
+  .cartao .arq { font-size: 16px; color: #888; font-family: Consolas, monospace; margin-bottom: 12px; }
+  .cartao ul { padding-left: 22px; }
+  .cartao li { font-size: 20px; margin-bottom: 6px; }
+  .cartao.verde { border-top: 6px solid #2f7a4f; }
+  .cartao.azul { border-top: 6px solid #4c51a8; }
+  .cartao.laranja { border-top: 6px solid #b7791f; }
+
+  /* fluxo */
+  .fluxo { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 18px 0 34px; }
+  .caixa { background: #fff; border: 2px solid var(--grafite); border-radius: 12px; padding: 16px 20px; text-align: center; min-width: 170px; }
+  .caixa b { display: block; font-size: 24px; }
+  .caixa small { font-size: 17px; color: #666; }
+  .caixa.ama { border-color: var(--amarelo); background: #fff8dc; }
+  .seta { font-size: 40px; color: var(--grafite-claro); }
+
+  .codigo {
+    background: var(--grafite); color: #f1f1ec; border-radius: 12px; padding: 22px 26px;
+    font-family: Consolas, "Courier New", monospace; font-size: 19px; line-height: 1.5; white-space: pre;
+  }
+  .codigo .k { color: var(--amarelo); }
+  .codigo .c { color: #9ea3aa; }
+
+  .img-centro { display: flex; justify-content: center; align-items: center; height: 560px; }
+  .img-centro img { max-width: 100%; max-height: 100%; border: 1px solid var(--borda); border-radius: 8px; background: #fff; }
+  .telas { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 26px; }
+  .telas figure { margin: 0; }
+  .telas img { width: 100%; border: 1px solid var(--borda); border-radius: 8px; display: block; }
+  .telas figcaption { font-size: 17px; color: #666; margin-top: 4px; }
+
+  .check li { list-style: none; position: relative; padding-left: 6px; font-size: 22px; margin-bottom: 9px; }
+  .check li::before { content: "✓"; position: absolute; left: -30px; color: var(--verde); font-weight: bold; }
+  .check { padding-left: 34px; }
+  .extra li::before { content: "+"; color: #b38b00; }
+
+  .final { background: var(--grafite); color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+  .final::before, .final::after { display: none; }
+  .final h1 { font-size: 64px; color: var(--amarelo); }
+  .final p { color: #d6d6d0; font-size: 28px; }
+</style>
+</head>
+<body>
+
+<!-- 1. Capa -->
+<section class="slide capa">
+  <div class="faixa"></div>
+  <p class="logo">Grafit<span>all</span></p>
+  <p class="sub">Sistema web de produção e estoque de minas de grafite</p>
+  <p class="info">
+    <b>Guilherme Nascimento Bilibio</b><br>
+    SPOLBP2 · Laboratório de Programação 2 · IFSP São Paulo<br>
+    Prof. Domingos Bernardo
+  </p>
+</section>
+
+<!-- 2. O problema -->
+<section class="slide">
+  <h2><span class="marca"></span>A empresa e o problema</h2>
+  <div class="duas">
+    <div>
+      <p>A <b>Grafitall</b> é uma fábrica de <b>minas de grafite</b> para lápis e lapiseiras.</p>
+      <p>O sistema organiza a produção, o estoque e os clientes em um só lugar, acessado pelo navegador.</p>
+    </div>
+    <div class="cartao">
+      <h3>Quem usa</h3>
+      <p style="font-size:22px;margin:0 0 14px">Os responsáveis pela <b>produção</b> e pelo <b>estoque</b>.</p>
+      <h3>O que fazem</h3>
+      <ul>
+        <li>Controlam as matérias-primas e o estoque em kg</li>
+        <li>Registram cada lote produzido (12H a 12B)</li>
+        <li>Cadastram os clientes atacadistas</li>
+      </ul>
+    </div>
+  </div>
+  <div class="rodape"><span>Grafitall</span><span>2</span></div>
+</section>
+
+<!-- 3. Entidades -->
+<section class="slide">
+  <h2><span class="marca"></span>Os três cadastros</h2>
+  <div class="tres">
+    <div class="cartao verde">
+      <h3>Matéria-prima</h3>
+      <div class="arq">materias-primas.json</div>
+      <ul><li>nome</li><li>quantidade em estoque (kg)</li><li>fornecedor</li><li>preço por kg</li></ul>
+    </div>
+    <div class="cartao azul">
+      <h3>Lote de produção</h3>
+      <div class="arq">lotes-producao.json</div>
+      <ul><li>graduação (12H … HB … 12B)</li><li>quantidade produzida</li><li>data de fabricação</li><li>status (Em produção / Finalizado)</li></ul>
+    </div>
+    <div class="cartao laranja">
+      <h3>Cliente</h3>
+      <div class="arq">clientes.json</div>
+      <ul><li>razão social</li><li>CNPJ</li><li>telefone</li><li>cidade/UF</li></ul>
+    </div>
+  </div>
+  <p style="margin-top:26px">Cada cadastro tem <b>4 atributos além do id</b> e as operações <b>listar, incluir, alterar e excluir</b>.</p>
+  <div class="rodape"><span>Grafitall</span><span>3</span></div>
+</section>
+
+<!-- 4. Arquitetura -->
+<section class="slide">
+  <h2><span class="marca"></span>Como funciona por dentro</h2>
+  <div class="fluxo">
+    <div class="caixa"><b>Página JSP</b><small>clientes.jsp</small></div>
+    <div class="seta">→</div>
+    <div class="caixa"><b>DAO</b><small>ClienteDAO</small></div>
+    <div class="seta">→</div>
+    <div class="caixa ama"><b>ArquivoJson</b><small>usa a Gson</small></div>
+    <div class="seta">→</div>
+    <div class="caixa"><b>Arquivo .json</b><small>dados/clientes.json</small></div>
+  </div>
+  <ul>
+    <li><b>JSP</b> no <b>Tomcat 9</b>: cada página mostra a tela e chama o DAO.</li>
+    <li><b>DAO</b>: listar, buscarPorId, incluir, alterar e excluir de um cadastro.</li>
+    <li><b>ArquivoJson</b>: a única classe que lê e grava os arquivos, com <code>toJson</code> e <code>fromJson</code> da <b>Gson</b>. Sem banco de dados.</li>
+    <li><b>cabecalho.jsp</b> e <b>rodape.jsp</b> entram em todas as páginas com <code>&lt;%@ include %&gt;</code>; erros vão para <b>erro.jsp</b>.</li>
+  </ul>
+  <div class="rodape"><span>Grafitall</span><span>4</span></div>
+</section>
+
+<!-- 5. Herança -->
+<section class="slide">
+  <h2><span class="marca"></span>Herança: a classe Cadastro</h2>
+  <div class="duas">
+    <div class="codigo"><span class="k">public abstract class</span> Cadastro {
+    <span class="k">protected int</span> id;   <span class="c">// comum a todos</span>
+
+    <span class="k">public int</span> getId() { ... }
+    <span class="k">public void</span> setId(<span class="k">int</span> id) { ... }
+
+    <span class="c">// cada subclasse escreve a sua</span>
+    <span class="k">public abstract</span> String getDescricao();
+}
+
+<span class="k">public class</span> Cliente <span class="k">extends</span> Cadastro {
+    ...
+    <span class="k">return</span> razaoSocial;  <span class="c">// getDescricao()</span>
+}</div>
+    <div>
+      <ul>
+        <li>Os três cadastros têm o <b>id</b> em comum: ele fica uma vez só, na superclasse.</li>
+        <li>Um cliente <b>é um</b> cadastro do sistema (relação "é um").</li>
+        <li><code>abstract</code>: não existe "cadastro genérico".</li>
+        <li><code>protected</code>: as subclasses enxergam o id.</li>
+        <li><code>getDescricao()</code> aparece no título do formulário de edição.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="rodape"><span>Grafitall</span><span>5</span></div>
+</section>
+
+<!-- 6. Diagrama de classes -->
+<section class="slide">
+  <h2 style="margin-bottom:14px"><span class="marca"></span>Diagrama de classes</h2>
+  <div class="img-centro"><img src="../uml/diagrama-classes.png" alt="Diagrama de classes"></div>
+  <div class="rodape"><span>Grafitall</span><span>6</span></div>
+</section>
+
+<!-- 7. Casos de uso -->
+<section class="slide">
+  <h2 style="margin-bottom:14px"><span class="marca"></span>Diagrama de casos de uso</h2>
+  <div class="duas" style="grid-template-columns: 1.1fr 1fr; align-items:center">
+    <div class="img-centro" style="height:560px"><img src="../casos-de-uso/diagrama-casos-de-uso.png" alt="Casos de uso"></div>
+    <ul>
+      <li><b>1 ator</b>: o responsável pela produção e pelo estoque.</li>
+      <li><b>12 casos de uso</b>: listar, incluir, alterar e excluir em cada um dos 3 cadastros.</li>
+      <li>A descrição de cada caso está em <code>casos-de-uso.md</code>.</li>
+    </ul>
+  </div>
+  <div class="rodape"><span>Grafitall</span><span>7</span></div>
+</section>
+
+<!-- 8. Telas -->
+<section class="slide">
+  <h2 style="margin-bottom:16px"><span class="marca"></span>As telas</h2>
+  <div class="telas">
+    <figure><img src="../prints/01-inicio.png" alt=""><figcaption>Página inicial</figcaption></figure>
+    <figure><img src="../prints/02-lotes.png" alt=""><figcaption>Listagem de lotes</figcaption></figure>
+  </div>
+  <div class="rodape"><span>Grafitall</span><span>8</span></div>
+</section>
+
+<section class="slide">
+  <h2 style="margin-bottom:16px"><span class="marca"></span>As telas</h2>
+  <div class="telas">
+    <figure><img src="../prints/03-editar-lote.png" alt=""><figcaption>Formulário (o mesmo para incluir e alterar)</figcaption></figure>
+    <figure><img src="../prints/06-erro.png" alt=""><figcaption>Página de erro (erro.jsp)</figcaption></figure>
+  </div>
+  <div class="rodape"><span>Grafitall</span><span>9</span></div>
+</section>
+
+<!-- 10. Requisitos -->
+<section class="slide">
+  <h2><span class="marca"></span>O que o projeto atende</h2>
+  <div class="duas">
+    <ul class="check">
+      <li>3 cadastros com incluir, alterar, excluir e listar</li>
+      <li>4 atributos além do id em cada um</li>
+      <li>Dados em arquivos JSON, lidos e gravados com Gson</li>
+      <li>Cabeçalho e rodapé com <code>&lt;%@ include %&gt;</code></li>
+      <li>Página de erro com o objeto <code>exception</code></li>
+      <li>Formulário único para incluir e alterar</li>
+      <li>CSS próprio em todas as páginas</li>
+    </ul>
+    <div class="cartao">
+      <h3>Extras</h3>
+      <ul class="check extra">
+        <li>Herança com classe abstrata</li>
+        <li>Campos validados: número, decimal, data dd/mm/aaaa, obrigatórios</li>
+        <li>Graduação e status em listas de escolha</li>
+        <li>Mais atributos que o mínimo (4 em vez de 3)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="rodape"><span>Grafitall</span><span>10</span></div>
+</section>
+
+<!-- 11. Demonstração -->
+<section class="slide final">
+  <h1>Demonstração</h1>
+  <p>Incluir · Alterar · Excluir · Listar</p>
+  <p style="font-size:20px;color:#9ea3aa;margin-top:40px">github.com/toybile/Grafitall-LP2</p>
+</section>
+
+</body>
+</html>
